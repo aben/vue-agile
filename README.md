@@ -112,6 +112,7 @@ Every first-level child of `<agile>` is a new slide. You also can group them ins
 | [responsive](#Responsive) | object | `null` | Object containing breakpoints and settings objects | 
 | rtl | boolean | `false` | Enable right-to-left mode |
 | slidesToShow | integer | `1` | Number of slides to show |
+| slideMultiple | boolean | `false` | Enable slide multiple items at once |
 | speed | integer (ms) | `300` | Slide animation speed in milliseconds | 
 | swipeDistance | integer (px) | `50` | Distance to swipe the next slide | 
 | throttleDelay | integer (ms) | `500` | Throttle delay for actions |

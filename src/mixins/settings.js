@@ -161,6 +161,14 @@ const mixin = {
     },
 
     /**
+     * Enable slide multiple items at once
+     */
+    slideMultiple: {
+      type: Boolean,
+      default: false
+    },
+
+    /**
      * Slide animation speed in milliseconds
      */
     speed: {

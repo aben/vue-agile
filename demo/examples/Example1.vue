@@ -19,11 +19,33 @@ section.section.section--demo-1
           template(#nextButton)
             i.fas.fa-chevron-right
 
+    p.section__description Slide multiple items at once. The number to slide is equal to slidesToShow
+    div.row
+      div.col-xs-12
+        agile(:options="options")
+          div.slide(v-for="n in 7", :key="n", :class="`slide--${n}-multiple`")
+            h3 {{ n }}
+
+          template(#prevButton)
+            i.fas.fa-chevron-left
+
+          template(#nextButton)
+            i.fas.fa-chevron-right
+
 </template>
 
 <script>
   export default {
-    name: 'Example1'
+    name: 'Example1',
+    data () {
+      return {
+        options: {
+          infinite: false,
+          slidesToShow: 3,
+          slideMultiple: true
+        }
+      }
+    }
   }
 </script>
 
@@ -80,11 +102,17 @@ section.section.section--demo-1
         font-weight: 300
 
     // Slides backgrounds
-    $colors: #f1c40f #e67e22 #e74c3c #9b59b6 #3498db #2ecc71
+    $colors: #f1c40f #e67e22 #e74c3c #9b59b6 #3498db #2ecc71 #40ccff
 
     @for $i from 1 through length($colors)
       $color: nth($colors, $i)
 
       .slide--#{$i}
+        background-color: $color
+
+    @for $i from 1 through length($colors)
+      $color: nth($colors, $i)
+
+      .slide--#{$i}-multiple
         background-color: $color
 </style>

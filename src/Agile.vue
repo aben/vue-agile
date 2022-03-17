@@ -102,7 +102,12 @@
       },
 
       countSlides: function () {
-        return (this.isSSR) ? this.htmlCollectionToArray(this.$slots.default).length : this.slides.length
+        const n = (this.isSSR) ? this.htmlCollectionToArray(this.$slots.default).length : this.slides.length
+        if (this.settings.slideMultiple) {
+          return Math.ceil(n / this.settings.slidesToShow)
+        } else {
+          return n
+        }
       },
 
       countSlidesAll: function () {
@@ -138,7 +143,16 @@
       },
 
       style: function () {
-        return `--agile-track-transform: translate(${this.translateX + this.marginX}px); --agile-track-transition: transform ${this.settings.timing} ${this.transitionDelay}ms`
+        if (this.settings.slideMultiple) {
+          // FIXME: Cannot work correctly when infinite is true
+          return {
+            transform: `translate(${this.translateX * this.settings.slidesToShow}px)`,
+            transition: `transform ${this.settings.timing} ${this.settings.speed}ms`,
+            willChange: 'auto'
+          }
+        } else {
+          return `--agile-track-transform: translate(${this.translateX + this.marginX}px); --agile-track-transition: transform ${this.settings.timing} ${this.transitionDelay}ms`
+        }
       },
 
       widthSlide: function () {
