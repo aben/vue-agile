@@ -2,7 +2,7 @@
   <div :class="classList" class="agile" @touchstart="() => {}">
     <div ref="list" class="agile__list">
       <div ref="track" :style="style" class="agile__track" @mouseout="handleMouseOut('track')" @mouseover="handleMouseOver('track')">
-        <div v-show="slidesCloned" ref="slidesClonedBefore" class="agile__slides agile__slides--cloned">
+        <div v-if="settings.infinite" v-show="slidesCloned" ref="slidesClonedBefore" class="agile__slides agile__slides--cloned">
           <slot/>
         </div>
 
@@ -10,7 +10,7 @@
           <slot/>
         </div>
 
-        <div v-show="slidesCloned" ref="slidesClonedAfter" class="agile__slides agile__slides--cloned">
+        <div v-if="settings.infinite" v-show="slidesCloned" ref="slidesClonedAfter" class="agile__slides agile__slides--cloned">
           <slot/>
         </div>
       </div>
@@ -384,5 +384,6 @@
     display: block;
     font-size: 0;
     line-height: 0;
+    padding: 0;
   }
 </style>
